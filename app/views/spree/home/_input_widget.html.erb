@@ -1,0 +1,17 @@
+<span class="input-group">
+  <span class="input-group-btn">
+      <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quant[<%= product.id %>]">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
+  </span>
+  <% if current_order && current_order.line_items.find_by_variant_id(product.id) %>
+    <input type="text" name="quant[<%= product.id %>]" class="form-control input-number product-number" variant_id ="<%= product.id %>" value="<%= current_order.line_items.find_by_variant_id(product.id).quantity %>" min="0" max="100000000">
+  <% else %>
+    <input type="text" name="quant[<%= product.id %>]" class="form-control input-number product-number" variant_id ="<%= product.id %>" value="0" min="0" max="100000000">
+  <% end %>
+  <span class="input-group-btn">
+      <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[<%= product.id %>]">
+          <span class="glyphicon glyphicon-plus"></span>
+      </button>
+  </span>
+</span>
