@@ -12,11 +12,14 @@ Spree::HomeController.class_eval do
       items = eval(params[:items])
 
       (0..items.length - 1).step(2).each do |index|
-        if !order.line_items.find_by_variant_id(items[index]) && items[index+1] > 0
+        # if !order.line_items.find_by_variant_id(items[index]) && items[index+1] > 0
+        #   order.contents.add(Spree::Variant.find(items[index]), items[index+1], {})
+        # elsif (order.line_items.find_by_variant_id(items[index]) &&
+        #   order.line_items.find_by_variant_id(items[index]).quantity != items[index+1] && items[index+1] > 0)
+        #     order.contents.add(Spree::Variant.find(items[index]), items[index+1], {})
+        # end
+        if items[index+1] > 0
           order.contents.add(Spree::Variant.find(items[index]), items[index+1], {})
-        elsif (order.line_items.find_by_variant_id(items[index]) &&
-          order.line_items.find_by_variant_id(items[index]).quantity != items[index+1])
-            order.contents.add(Spree::Variant.find(items[index]), items[index+1] - order.line_items.find_by_variant_id(items[index]).quantity, {})
         end
       end
 

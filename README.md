@@ -1,7 +1,7 @@
 SpreeBatchOrderPage
 ===================
 
-Introduction goes here.
+You can order products at home page.
 
 ## Installation
 
